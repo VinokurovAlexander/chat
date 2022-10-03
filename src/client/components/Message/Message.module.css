@@ -1,0 +1,14 @@
+.message {
+    display: flex;
+    min-width: 100px;
+    flex-direction: column;
+    padding: 7px;
+    font-size: 14px;
+    background-color: #F2F2F7;
+    border-radius: 6px;
+}
+
+.name {
+    margin-bottom: 5px;
+    font-weight: 600;
+}

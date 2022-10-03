@@ -1,0 +1,15 @@
+.chat {
+    width: 100%;
+    max-width: 650px;
+    border: 1px solid lightgray;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+    height: 500px;
+    overflow: auto;
+}

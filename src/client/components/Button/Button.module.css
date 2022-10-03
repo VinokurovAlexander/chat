@@ -1,0 +1,21 @@
+.button {
+    background: none;
+    border: none;
+}
+
+.button svg {
+    fill: #007AFF;
+    transition: fill 0.3s;
+}
+
+.button:disabled {
+    pointer-events: none;
+}
+
+.button:disabled svg {
+    fill: gray;
+}
+
+.button:hover {
+    cursor: pointer;
+}
