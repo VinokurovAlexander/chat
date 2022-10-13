@@ -4,7 +4,7 @@
 }
 
 .button svg {
-    fill: #007AFF;
+    fill: var(--main-color);
     transition: fill 0.3s;
 }
 

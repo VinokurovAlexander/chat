@@ -1,9 +1,9 @@
 import { useFilter, useClient } from "@logux/client/react";
 import { createSyncMap } from '@logux/client'
-import { FC, useRef, useEffect } from "react";
+import { FC } from "react";
 import { nanoid } from "nanoid";
 
-import { Field } from "../Field";
+import { MessageForm } from "../MessageForm";
 import { Message } from "../Message";
 import { MessageTemplate } from "../../store";
 import { useScrollToBottom } from "./useScrollToBottom";
@@ -32,7 +32,7 @@ const Chat: FC<Chat> = ({ className }) => {
                 {isLoading ? <p>loading...</p> : list.map(message => <Message data={message} key={message.id} />)}
                 {scrollNode}
             </div>
-            <Field onSubmit={handleSubmit} />
+            <MessageForm onSubmit={handleSubmit} />
         </div>
     )
 }

@@ -1,33 +1,33 @@
-import { FC, useState } from 'react';
-import { Button } from "../Button";
+import { FC, useState, ChangeEventHandler, FormEventHandler } from 'react';
+import { IconButton } from "../IconButton";
 import SendIcon from './assets/send.svg';
-import classes from './Field.module.css';
+import classes from './MessageForm.module.css';
 
-interface Field {
+interface MessageForm {
     onSubmit?: (value: string) => void;
 }
 
-const Field: FC<Field> = ({ onSubmit }) => {
+const MessageForm: FC<MessageForm> = ({ onSubmit }) => {
     const [value, setValue] = useState('');
 
-    const handleSubmit = e => {
+    const handleSubmit: FormEventHandler = e => {
         e.preventDefault();
         setValue('');
 
         onSubmit?.(value);
     }
 
-    const handleFieldChange = e => {
+    const handleFieldChange: ChangeEventHandler<HTMLInputElement>  = e => {
         setValue(e.target.value)
     }
 
     return (
-        <div className={classes.field}>
+        <div>
             <form onSubmit={handleSubmit}>
                 <div className={classes.wrapper}>
                     <input placeholder="Start typing..." className={classes.input} value={value} onChange={handleFieldChange} />
                     <div className={classes.buttons}>
-                        <Button disabled={!value} className={classes.button} icon={<SendIcon />} />
+                        <IconButton disabled={!value} className={classes.button} icon={<SendIcon />} />
                     </div>
                 </div>
             </form>
@@ -35,4 +35,4 @@ const Field: FC<Field> = ({ onSubmit }) => {
     )
 };
 
-export default Field;
+export default MessageForm;

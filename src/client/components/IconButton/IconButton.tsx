@@ -1,16 +1,16 @@
 import { ReactNode, FC } from "react";
-import classes from './Button.module.css';
+import classes from './IconButton.module.css';
 
-interface Button {
+interface IconButton {
     disabled?: boolean
-    icon?: ReactNode
+    icon: ReactNode
     className?: string;
 }
 
-const Button: FC<Button> = ({ icon, disabled = false, className }) => (
+const IconButton: FC<IconButton> = ({ icon, disabled = false, className }) => (
     <button disabled={disabled} className={`${classes.button} ${className}`}>
         {icon}
     </button>
 )
 
-export default Button;
+export default IconButton;

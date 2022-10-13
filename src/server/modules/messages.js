@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 import { addSyncMapFilter, NoConflictResolution, addSyncMap } from '@logux/server';
-import {LoguxNotFoundError} from "@logux/actions";
+import { LoguxNotFoundError } from "@logux/actions";
 
 const messages = [
     {
@@ -21,14 +21,14 @@ export default (server) => {
             return true
         },
 
-        create(ctx, id, fields, time, action, meta) {
+        create(ctx, id, fields) {
             messages.push({
                 id,
                 ...fields
             });
         },
 
-        load(ctx, id, since, action, meta) {
+        load(ctx, id) {
             const message = messages.find(message => message.id === id);
 
             if (!message) {
