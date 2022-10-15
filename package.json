@@ -4,8 +4,8 @@
     "description": "",
     "type": "module",
     "scripts": {
-        "start:server": "nodemon src/server/index.js",
-        "start:client": "vite"
+        "start:client": "vite serve ./src/client",
+        "start:server": "nodemon ./src/server/index.js"
     },
     "repository": {
         "type": "git",

@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: indianred;
+    background-color: rgb(253, 237, 237);
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    fill: firebrick;
+}

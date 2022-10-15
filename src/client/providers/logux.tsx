@@ -1,5 +1,5 @@
 import { ChannelErrors, ClientContext, ReactErrorHandlers } from "@logux/client/react";
-import { ReactNode, FC } from "react";
+import { FC, PropsWithChildren} from "react";
 import { CrossTabClient, log } from "@logux/client";
 
 const errorPages: ReactErrorHandlers = {
@@ -8,25 +8,33 @@ const errorPages: ReactErrorHandlers = {
     Error: () => <p>500</p>
 }
 
-const client = new CrossTabClient({
-    server: 'ws://localhost:31337',
-    subprotocol: '1.0.0',
-    userId: '1'
-})
-
-client.start();
-log(client);
-
 interface LoguxProvider {
-    children: ReactNode;
+    userId: string;
 }
 
-const LoguxProvider: FC<LoguxProvider> = ({ children }) => (
-    <ClientContext.Provider value={client}>
-        <ChannelErrors {...errorPages}>
-            {children}
-        </ChannelErrors>
-    </ClientContext.Provider>
-)
+
+const getClient = (userId: string) => {
+    const client = new CrossTabClient({
+        server: 'ws://localhost:31337',
+        subprotocol: '1.0.0',
+        userId: userId
+    })
+
+    client.start();
+    log(client);
+
+    return client;
+}
+
+
+const LoguxProvider: FC<PropsWithChildren<LoguxProvider>> = ({ children, userId }) =>
+    (
+        <ClientContext.Provider value={getClient(userId)}>
+            <ChannelErrors {...errorPages}>
+                {children}
+            </ChannelErrors>
+        </ClientContext.Provider>
+    )
+
 
 export default LoguxProvider;
