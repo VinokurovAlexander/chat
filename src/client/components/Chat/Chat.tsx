@@ -1,33 +1,38 @@
-import { FC, useState } from "react";
-import { Field } from "../Field";
+import { useFilter, useClient } from "@logux/client/react";
+import { createSyncMap } from '@logux/client'
+import { FC } from "react";
+import { nanoid } from "nanoid";
+
+import { MessageForm } from "../MessageForm";
 import { Message } from "../Message";
+import { MessageTemplate } from "../../store/message";
+import { useScrollToBottom } from "./useScrollToBottom";
 import classes from './Chat.module.css';
 
 interface Chat {
     className?: string;
 }
 
-const defaultMessages = [
-    {
-        name: 'Alex',
-        text: 'Hello world',
-        timestamp: 1231232
-    }
-]
-
 const Chat: FC<Chat> = ({ className }) => {
-    const [messages, setMessages] = useState(defaultMessages);
+    const client = useClient();
+    const { list, isLoading } = useFilter(MessageTemplate);
+    const scrollNode = useScrollToBottom(list);
 
-    const addMessage = (text: string) => {
-        setMessages([...messages, { name: 'Alex', text, timestamp:  Date.now() }])
+    const handleSubmit = (text: string) => {
+        createSyncMap(client, MessageTemplate, {
+            id: nanoid(4),
+            text,
+            name: 'Alex'
+        })
     }
 
     return (
         <div className={`${classes.chat} ${className}`}>
             <div className={classes.messages}>
-                {messages.map(message => <Message data={message} key={message.timestamp} />)}
+                {isLoading ? <p>loading...</p> : list.map(message => <Message data={message} key={message.id} />)}
+                {scrollNode}
             </div>
-            <Field onSubmit={addMessage} />
+            <MessageForm onSubmit={handleSubmit} />
         </div>
     )
 }

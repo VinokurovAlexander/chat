@@ -5,3 +5,7 @@
     box-sizing: border-box;
     font-family: "Verdana", sans-serif;
 }
+
+:root {
+    --main-color: dodgerblue;
+}

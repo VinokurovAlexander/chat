@@ -1,21 +1,15 @@
 .button {
-    background: none;
+    width: 100%;
+    padding: 12px 16px;
+    background-color: var(--main-color);
     border: none;
-}
-
-.button svg {
-    fill: #007AFF;
-    transition: fill 0.3s;
-}
-
-.button:disabled {
-    pointer-events: none;
-}
-
-.button:disabled svg {
-    fill: gray;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    transition: opacity ease-in 0.3s;
 }
 
 .button:hover {
+    opacity: 0.7;
     cursor: pointer;
 }
