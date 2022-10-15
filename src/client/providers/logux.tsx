@@ -18,7 +18,7 @@ client.start();
 log(client);
 
 interface LoguxProvider {
-    children?: ReactNode;
+    children: ReactNode;
 }
 
 const LoguxProvider: FC<LoguxProvider> = ({ children }) => (

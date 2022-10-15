@@ -1,13 +1,16 @@
+import { useStore } from "@nanostores/react";
+
 import { Chat } from "../Chat";
 import { SignIn } from "../SignIn";
+import { userStore } from "../../store/user";
 import classes from './App.module.css';
 
-const IS_AUTH = false;
-
 const App = () => {
+    const user = useStore(userStore);
+
     return (
         <div className={classes.app}>
-            {IS_AUTH ? <Chat className={classes.chat} /> :  <SignIn className={classes.signin} />}
+            {user.isAuth ? <Chat className={classes.chat} /> : <SignIn className={classes.signin} />}
         </div>
     )
 }

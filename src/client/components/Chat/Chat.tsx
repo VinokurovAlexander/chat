@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 
 import { MessageForm } from "../MessageForm";
 import { Message } from "../Message";
-import { MessageTemplate } from "../../store";
+import { MessageTemplate } from "../../store/message";
 import { useScrollToBottom } from "./useScrollToBottom";
 import classes from './Chat.module.css';
 
