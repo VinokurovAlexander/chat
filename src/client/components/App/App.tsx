@@ -2,17 +2,21 @@ import { useStore } from "@nanostores/react";
 
 import { Chat } from "../Chat";
 import { SignIn } from "../SignIn";
-import { getUserId } from "../../store/auth";
+import { getUser } from "../../store/auth";
 import { LoguxProvider } from "../../providers";
 import classes from './App.module.css';
 
 const App = () => {
-    const id = useStore(getUserId);
+    const user = useStore(getUser);
 
     return (
         <div className={classes.app}>
-            {id
-                ? <LoguxProvider userId={id}><Chat className={classes.chat} /></LoguxProvider>
+            {user
+                ? (
+                    <LoguxProvider userId={user.id}>
+                        <Chat className={classes.chat} user={user} />
+                    </LoguxProvider>
+                )
                 : <SignIn className={classes.signin} />
             }
         </div>

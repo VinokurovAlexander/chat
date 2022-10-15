@@ -2,7 +2,7 @@ import { atom, computed } from 'nanostores';
 
 type Error = string;
 
-interface User {
+export interface User {
     name: string;
     id: string
 }
@@ -28,5 +28,5 @@ export const unsuccessAuth = (payload: Error) => {
     })
 }
 
-export const getUserId = computed(authStore, state => state.user?.id);
 export const getAuthError = computed(authStore, state => state.error);
+export const getUser = computed(authStore, state => state.user);
