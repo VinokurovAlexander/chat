@@ -2,7 +2,7 @@ import { ChannelErrors, ClientContext, ReactErrorHandlers } from "@logux/client/
 import { FC, PropsWithChildren} from "react";
 import { useStore } from "@nanostores/react";
 
-import { loguxClient } from "../store/logux";
+import {loguxClient} from "../../shared/store/logux";
 
 const errorPages: ReactErrorHandlers = {
     NotFound: () => <p>404</p>,

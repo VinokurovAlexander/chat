@@ -1,5 +1,6 @@
 import { Client } from '@logux/client';
-import { successAuth, unsuccessAuth } from "../../store/auth";
+
+import { successAuth, unsuccessAuth } from "../../../shared/store/auth";
 
 interface Credentials {
     email: string;

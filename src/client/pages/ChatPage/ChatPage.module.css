@@ -1,13 +1,9 @@
-.app {
+.main {
     display: flex;
     min-height: 100vh;
 }
 
 .chat {
+    max-width: 600px;
     margin: auto;
-}
-
-.signin {
-    max-width: 450px;
-    margin: 15% auto 0;
 }
