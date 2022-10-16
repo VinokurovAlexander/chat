@@ -10,16 +10,14 @@ const App = () => {
     const user = useStore(getUser);
 
     return (
-        <div className={classes.app}>
-            {user
-                ? (
-                    <LoguxProvider userId={user.id}>
-                        <Chat className={classes.chat} user={user} />
-                    </LoguxProvider>
-                )
-                : <SignIn className={classes.signin} />
-            }
-        </div>
+        <LoguxProvider userId={user?.id}>
+            <div className={classes.app}>
+                {user
+                    ? <Chat className={classes.chat} user={user} />
+                    : <SignIn className={classes.signin} />
+                }
+            </div>
+        </LoguxProvider>
     )
 }
 

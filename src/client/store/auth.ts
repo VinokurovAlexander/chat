@@ -30,3 +30,4 @@ export const unsuccessAuth = (payload: Error) => {
 
 export const getAuthError = computed(authStore, state => state.error);
 export const getUser = computed(authStore, state => state.user);
+export const getUserId = computed(authStore, state => state.user?.id);

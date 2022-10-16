@@ -1,5 +1,6 @@
 import { FC, FormEventHandler, useState } from "react";
 import { useStore } from "@nanostores/react";
+import { useClient } from "@logux/client/react";
 
 import { Button } from "../Button";
 import { Field } from "../Field";
@@ -14,6 +15,7 @@ interface SignIn {
 }
 
 const SignIn: FC<SignIn> = ({ className }) => {
+    const client = useClient();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
 
@@ -22,7 +24,7 @@ const SignIn: FC<SignIn> = ({ className }) => {
     const handleSubmit: FormEventHandler = e => {
         e.preventDefault();
 
-       login(email, password);
+       login(client, { email, password });
     }
 
     return (
