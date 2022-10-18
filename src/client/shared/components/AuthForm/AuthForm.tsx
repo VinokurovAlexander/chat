@@ -1,10 +1,12 @@
-import {FormEventHandler, useState} from "react";
-import {NavLink} from "react-router-dom";
+import {FormEventHandler, ReactNode, useEffect, useState} from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import {useStore} from "@nanostores/react";
 
 import {Field} from "../Field";
 import {Alert} from "../Alert";
 import {Button} from "../Button";
 import { Route } from "../../config/routes";
+import {authStore, resetError} from "../../store/auth";
 
 import classes from './AuthForm.module.css';
 
@@ -15,16 +17,19 @@ export interface Credentials {
 
 interface AuthForm {
     onSubmit?: (credentials: Credentials) => void;
-    error: string | null;
     title: string;
     navLink?: {
         title: string;
         to: Route;
     }
     className?: string;
+    fields?: ReactNode
 }
 
-export default ({ onSubmit, error, className, title, navLink }: AuthForm) => {
+export default ({ onSubmit, className, title, navLink, fields }: AuthForm) => {
+    const navigation = useNavigate();
+    const { user, error } = useStore(authStore);
+
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
 
@@ -34,10 +39,23 @@ export default ({ onSubmit, error, className, title, navLink }: AuthForm) => {
         onSubmit?.({ email, password })
     }
 
+    useEffect(() => {
+        if (user) {
+            navigation(Route.CHAT)
+        }
+    },[user])
+
+    useEffect(() => {
+        return () => {
+            resetError();
+        }
+    } ,[])
+
     return (
         <div className={`${classes.container} ${className}`}>
             <h1 className={classes.title}>{title}</h1>
             <form className={classes.form} onSubmit={handleSubmit}>
+                {fields}
                 <Field label='Email address' name="email" id="email" required onChange={setEmail} />
                 <Field label="Password" name="password" id="password" type="password" required onChange={setPassword} />
                 {error && (
@@ -46,7 +64,7 @@ export default ({ onSubmit, error, className, title, navLink }: AuthForm) => {
                     </Alert>
                 )}
                 <Button>
-                    Sign In
+                    {title}
                 </Button>
                 {navLink && (
                     <NavLink to={navLink.to} className={classes.link}>

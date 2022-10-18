@@ -7,8 +7,8 @@ interface Credentials {
     password: string;
 }
 
-export const login = (client: Client, { password, email }: Credentials) => {
-    client.type('login/done', action => {
+export const signin = (client: Client, { password, email }: Credentials) => {
+    client.type('signin/done', action => {
         successAuth({ id: action.id, name: action.name})
     })
 
@@ -16,6 +16,5 @@ export const login = (client: Client, { password, email }: Credentials) => {
         unsuccessAuth(action.reason);
     })
 
-    client.start()
-    client.log.add({ type: 'login', email, password }, { sync: true })
+    client.log.add({ type: 'signin', email, password }, { sync: true })
 }

@@ -1,4 +1,4 @@
-import { atom, computed } from 'nanostores';
+import { map, computed } from 'nanostores';
 
 type Error = string;
 
@@ -12,7 +12,7 @@ interface Auth {
     user: User | null
 }
 
-export const authStore = atom<Auth>({ error: null, user: null });
+export const authStore = map<Auth>({ error: null, user: null });
 
 export const successAuth = (payload: User) => {
     authStore.set({
@@ -28,6 +28,9 @@ export const unsuccessAuth = (payload: Error) => {
     })
 }
 
-export const getAuthError = computed(authStore, state => state.error);
+export const resetError = () => {
+    authStore.setKey('error', null)
+}
+
 export const getUser = computed(authStore, state => state.user);
 export const getUserId = computed(authStore, state => state.user?.id);
