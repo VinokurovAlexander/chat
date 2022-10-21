@@ -30,6 +30,7 @@ const Chat: FC<Chat> = ({ className, user }) => {
         })
     }
 
+    // move it into separate component
     const renderMessages = () =>
         list.map(message => {
             const isOwnMessage = user.id === message.userId;

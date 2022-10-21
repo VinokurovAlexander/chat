@@ -1,13 +1,16 @@
-import { FC, PropsWithChildren } from "react";
-import classes from './Button.module.css';
+import { PropsWithChildren } from "react";
 
+import classes from './Button.module.css';
 
 interface Button {
     onClick?: () => void;
+    className?: string;
 }
 
-const Button: FC<PropsWithChildren<Button>> = ({ children, onClick }) => (
-    <button className={classes.button} onClick={onClick}>{children}</button>
+export default ({ children, onClick, className }: PropsWithChildren<Button>) => (
+    <button
+        className={`${classes.button} ${className}`}
+        onClick={onClick}>
+        {children}
+    </button>
 )
-
-export default Button;

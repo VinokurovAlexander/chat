@@ -1,5 +1,5 @@
-import {useState} from "react";
 import { useClient } from "@logux/client/react";
+import {useState} from "react";
 
 import { AuthForm, Credentials } from "../../../shared/components/AuthForm";
 import { Route } from "../../../shared/config/routes";
@@ -10,6 +10,7 @@ import { signup } from "../lib/signup";
 
 export default () => {
     const client = useClient();
+
     const [name, setName] = useState('');
 
     const handleSubmit = (creds: Credentials) => {

@@ -18,6 +18,15 @@ const SignIn: FC<SignIn> = ({ className }) => {
         signin(client, creds);
     }
 
+    const handleClick = () => {
+        client.log.add(
+            {
+                type: 'user',
+                userId: "63515e4d360dd8842b7432c1",
+                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MzUxNWU0ZDM2MGRkODg0MmI3NDMyYzEifQ.rvwoEOhLCJItAMPXDWxPwgtcN1DLtWiM2-zzXz5iSzs"
+            }, { sync: true })
+    }
+
     return (
         <div className={className}>
             <AuthForm
@@ -25,6 +34,7 @@ const SignIn: FC<SignIn> = ({ className }) => {
                 title="Sign In"
                 navLink={{ title: 'Don`t have an account? Sign up', to: Route.SIGN_UP}}
             />
+            <button onClick={handleClick}>click me</button>
         </div>
     )
 }

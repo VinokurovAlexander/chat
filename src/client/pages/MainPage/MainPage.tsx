@@ -1,9 +1,14 @@
-import { useProtectedRoute } from "../../shared/hooks";
+import { Chat } from "../../shared/components/Chat";
+import { User } from "../../shared/store/auth";
 
-const MainPage = () => {
-    useProtectedRoute();
+import classes from './MainPage.module.css';
 
-    return null;
+interface MainPage {
+    user: User
 }
 
-export default MainPage;
+export default ({ user }: MainPage) => (
+    <div className={classes.main}>
+        <Chat user={user} className={classes.chat} />
+    </div>
+);

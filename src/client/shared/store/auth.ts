@@ -4,7 +4,10 @@ type Error = string;
 
 export interface User {
     name: string;
-    id: string
+    id: string;
+    isVerified: boolean;
+    verificationId: string;
+    token: string;
 }
 
 interface Auth {
@@ -14,14 +17,17 @@ interface Auth {
 
 export const authStore = map<Auth>({ error: null, user: null });
 
-export const successAuth = (payload: User) => {
+export const setUser = (user: User) => {
+    localStorage.setItem('userId', user.id)
+    localStorage.setItem('token', user.token)
+
     authStore.set({
         error: null,
-        user: {...payload}
+        user
     })
 }
 
-export const unsuccessAuth = (payload: Error) => {
+export const setError = (payload: Error) => {
     authStore.set({
         error: payload,
         user: null
@@ -33,4 +39,3 @@ export const resetError = () => {
 }
 
 export const getUser = computed(authStore, state => state.user);
-export const getUserId = computed(authStore, state => state.user?.id);

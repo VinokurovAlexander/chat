@@ -1,6 +1,6 @@
 import { Client } from "@logux/client";
 
-import { successAuth, unsuccessAuth } from "../../../shared/store/auth";
+import { setUser, setError } from "../../../shared/store/auth";
 
 
 export interface Credentials {
@@ -11,11 +11,13 @@ export interface Credentials {
 
 export const signup = (client: Client, { email, password, name }: Credentials) => {
     client.type('signup/done', action => {
-        successAuth({ name: action.name, id: action.id })
+        const { user } = action;
+
+        setUser(user)
     })
 
     client.type('logux/undo', action => {
-        unsuccessAuth(action.reason)
+        setError(action.reason)
     })
 
     client.log.add({ type: 'signup', email, password, name }, { sync: true })

@@ -1,12 +1,12 @@
 import {FormEventHandler, ReactNode, useEffect, useState} from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useStore} from "@nanostores/react";
 
 import {Field} from "../Field";
 import {Alert} from "../Alert";
 import {Button} from "../Button";
 import { Route } from "../../config/routes";
-import {authStore, resetError} from "../../store/auth";
+import { authStore, resetError } from "../../store/auth";
 
 import classes from './AuthForm.module.css';
 
@@ -27,8 +27,8 @@ interface AuthForm {
 }
 
 export default ({ onSubmit, className, title, navLink, fields }: AuthForm) => {
-    const navigation = useNavigate();
-    const { user, error } = useStore(authStore);
+    const { error, user } = useStore(authStore);
+    const navigate = useNavigate();
 
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -41,9 +41,9 @@ export default ({ onSubmit, className, title, navLink, fields }: AuthForm) => {
 
     useEffect(() => {
         if (user) {
-            navigation(Route.CHAT)
+            navigate(Route.MAIN)
         }
-    },[user])
+    }, [user])
 
     useEffect(() => {
         return () => {

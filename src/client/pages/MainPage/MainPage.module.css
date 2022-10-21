@@ -1,3 +1,9 @@
-.container {
+.main {
     display: flex;
+    min-height: 100vh;
+}
+
+.chat {
+    max-width: 600px;
+    margin: auto;
 }
