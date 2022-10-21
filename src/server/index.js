@@ -1,4 +1,5 @@
 import { Server } from '@logux/server'
+import mongoose from "mongoose";
 
 const server = new Server (
     Server.loadOptions(process, {
@@ -8,6 +9,12 @@ const server = new Server (
     })
 )
 
-server.autoloadModules().then(() => {
-    server.listen()
-})
+server.autoloadModules()
+    .then(() => {
+        server.listen()
+    })
+    .then(async () => {
+        await mongoose.connect(process.env.DB_URL)
+    }).catch(e => {
+        console.log(e)
+    })

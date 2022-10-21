@@ -1,0 +1,1 @@
+export { default as WarnPage } from './ui/WarnPage';

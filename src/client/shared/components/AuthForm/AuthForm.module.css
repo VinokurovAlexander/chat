@@ -1,0 +1,26 @@
+.container {
+    width: 100%;
+    padding: 16px;
+}
+
+.title {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.link {
+    font-size: 14px;
+    color: var(--main-color);
+    text-decoration-color: var(--light-main-color);
+    transition: text-decoration-color 0.2s;
+}
+
+.link:hover {
+    text-decoration-color: var(--main-color);
+}

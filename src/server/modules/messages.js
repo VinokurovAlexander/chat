@@ -1,17 +1,18 @@
-import { nanoid } from "nanoid";
 import { addSyncMapFilter, NoConflictResolution, addSyncMap } from '@logux/server';
 import { LoguxNotFoundError } from "@logux/actions";
 
 const messages = [
     {
-        id: nanoid(4),
+        id: 'ssEW',
         text: 'lol',
-        name: 'Alex'
+        name: 'Alex',
+        userId: 'sfEf'
     },
     {
-        id: nanoid(4),
+        id: 'weSf',
         text: 'kek',
-        name: 'Alex'
+        name: 'Alex',
+        userId: 'sfEf'
     }
 ]
 
@@ -38,7 +39,8 @@ export default (server) => {
             return {
                 id,
                 text: NoConflictResolution(message.text),
-                name: NoConflictResolution(message.name)
+                name: NoConflictResolution(message.name),
+                userId: NoConflictResolution(message.userId)
             };
         }
     })
@@ -53,7 +55,8 @@ export default (server) => {
             return messages.map(message => ({
                 id: message.id,
                 text: NoConflictResolution(message.text),
-                name: NoConflictResolution(message.name)
+                name: NoConflictResolution(message.name),
+                userId: NoConflictResolution(message.userId)
             }));
         },
     })
